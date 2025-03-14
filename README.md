@@ -5,9 +5,8 @@ Authors: Alyxandrea Wikarsa & Jennifer Kuei
 ## Overview
 
 This project is conducted at UCSD for the DSC80 course. In this project, we are taking a look at the relationship between cooking time and average enjoyment rating based on the given dataset.
-<div class="alert-info">
-## Test intro
-</div>
+## <code style=" color : lightskyblue"> Introduction </code>
+
 ## Introduction
 
 Who doesn't prefer good food? With so many recipes available especially online, people rely on ratings to determine which dishes are worth the time and effort. However, a myriad of people prioritize convenience as well. Especially for college students where in a study conducted by Yugo News, 63% of students that don't cook state that time is the biggest barrier. This is why we are looking to find out **if there is a relationship between the average time (minutes) of cooking and the average rating of recipes** as we want recipes that taste good and are fast.
