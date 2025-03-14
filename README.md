@@ -2,12 +2,10 @@
 ## Analysis Of The Relationship Between Cooking Time And Average Enjoyment Rating.
 Authors: Alyxandrea Wikarsa & Jennifer Kuei
 
-## Overview
+## <code style=" color : lightskyblue"> Overview </code>
 
 This project is conducted at UCSD for the DSC80 course. In this project, we are taking a look at the relationship between cooking time and average enjoyment rating based on the given dataset.
 ## <code style=" color : lightskyblue"> Introduction </code>
-
-## Introduction
 
 Who doesn't prefer good food? With so many recipes available especially online, people rely on ratings to determine which dishes are worth the time and effort. However, a myriad of people prioritize convenience as well. Especially for college students where in a study conducted by Yugo News, 63% of students that don't cook state that time is the biggest barrier. This is why we are looking to find out **if there is a relationship between the average time (minutes) of cooking and the average rating of recipes** as we want recipes that taste good and are fast.
 
@@ -40,7 +38,7 @@ The `interactions` dataset, taken from `interactions.csv`, contains 83782 rows, 
 
 **The columns that we are mainly focused on are ‘id’ and ‘minutes’ from `recipes` and ‘recipe_id’ and ‘rating’ from `interactions`.**
 
-## Data Cleaning and Exploratory Data Analysis
+## <code style=" color : lightskyblue"> Data Cleaning and Exploratory Data Analysis </code>
 
 To make our dataset more convenient for our analysis, we did the following steps to clean it up:
 
@@ -216,8 +214,8 @@ In this pivot table:
 - avg_rating shows how users rate recipes, helping identify if quick recipes are rated better than time-consuming ones.
 - mean and count lets us see both the average rating and how many recipes fall into each category.
 
+## <code style=" color : lightskyblue"> Assessment of Missingness </code>
 
-## Assessment of Missingness
 In our data, there are three columns that have a significant amount of missing values `review`, `rating`, and `avg_rating` 
 ### NMAR Analysis
 I think that the missing values for review are not missing at random. This is due to the fact that many people might not care to leave a review unless they either loved or hated it (1 or a 5) but if they were more neutral on it, they might not have left a review.
@@ -263,7 +261,7 @@ We did another test on missingness to check if `avg_ratings` was dependent on `p
 Interpretation: We ran the test by shuffling missingness 1000 times and we got a 130.29 observed difference which is shown on the graph. Since the p-value we got was (0) is less than our significance level (0.01), we **fail to reject the null hypothesis** thus the missingness of `avg_ratings` might be dependent on the `minutes` it takes to complete the recipe
 
 
-## Hypothesis Testing
+## <code style=" color : lightskyblue"> Hypothesis Testing </code>
 As mentioned in the introduction, we aim to determine whether cooking time is correlated with the average rating of recipes. Some people may assume that longer cooking times result in better flavors and higher ratings, while others may prefer quicker meals. To investigate this relationship, we conducted a permutation test. We first sorted the lengths of the cooking times into two groups, one long one short by determining if it was longer or shorter than the median cooking time. We then used the following hypotheses for our testing:
 
 Null Hypothesis (H0): There is no relationship between cooking time and the average rating of recipes.
@@ -285,8 +283,8 @@ Conclusion
 Since the p-value is below 0.05, we **reject the null hypothesis**. This indicates that cooking time does not have a statistically significant effect on the average rating of recipes. 
 
 
+## <code style=" color : lightskyblue"> Framing a Prediction Problem </code>
 
-## Framing a Prediction Problem
 For our prediction problem, we are planning on predicting the **average rating** of a recipe. This is a **regression** problem since the response variable, average rating, is continuous between 1 and 5, not categorical as it contains decimal values.
 
 The response variable is **the average rating of the recipe** and we chose this as we believe it best encapsulates overall feeling towards a recipe from the audience which is useful for not only other users, but also recipe creators.  	
@@ -296,8 +294,7 @@ To evaluate our model, we decided to use Mean Square Error (MSE) and R2 as it ca
 When regarding features, almost all of the columns would be available for use while predicting the average rating during the “time of prediction”, except for ratings and reviews as we would ideally predict before users leave reviews. 
 
 
-
-## Baseline Model
+## <code style=" color : lightskyblue"> Baseline Model </code>
 
 The baseline model for this project is a linear regression model aimed at predicting the average rating (`avg_rating`) of recipes based on two features:  
 
@@ -327,7 +324,7 @@ After splitting the data into training (70%) and test (30%) sets, the pipeline w
 While the MSE and R² provide a starting point, this baseline model is relatively simple and likely underfits the data. It does not capture complex relationships between features or interactions between cooking time, ingredient count, and other factors that might influence a recipe's rating. The next steps will involve exploring additional features, testing more complex models, and fine-tuning hyperparameters to improve predictive performance.  
 
 
-## Final Model
+## <code style=" color : lightskyblue"> Final Model </code>
 
 We wanted to build a model that builds on the initial baseline model, which lacked predictive power. The hypothesis is that longer cooking times, more steps, and more ingredients may reflect more complex recipes, potentially influencing ratings.  
 
@@ -367,7 +364,7 @@ The small R² value indicates that the model still struggles to explain the vari
 We think that this may be because ratings may be influenced by other factors like user preferences, recipe descriptions, or presentation, not just complexity or cooking time. Another possible reason is the relationship may be nonlinear or more nuanced, requiring more sophisticated features (e.g., interaction terms, cuisine type).  
 
 
-## Fairness Analysis
+## <code style=" color : lightskyblue"> Fairness Analysis </code>
 
 
 
