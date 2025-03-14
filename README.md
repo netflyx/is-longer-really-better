@@ -1,4 +1,4 @@
-### Is Longer Really Better?
+# Is Longer Really Better?
 ## Analysis Of The Relationship Between Cooking Time And Average Enjoyment Rating.
 Authors: Alyxandrea Wikarsa & Jennifer Kuei
 
