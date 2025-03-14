@@ -157,7 +157,7 @@ Because we've capped the minutes at the 99th percentile, the x-axis is no longer
 
 ### Bivariate Analysis
 
-To explore the relationship between cooking time and average rating, we created a scatter plot and a box plot. The scatter plot shows how ratings vary with cooking time, while the box plot groups cooking times into short, medium, long, and extra-long categories to highlight trends. From the scatterplot, we observe that there’s crowding when the cooking time is less than 100 minutes. **HELP ADD STUFF PLS**
+To explore the relationship between cooking time and average rating, we created a scatter plot and a box plot. We added the `cooking_time_bins` column to `filtered_df`. 
 
 <iframe
   src="assets/fig_bivariate_scatter.html"
@@ -172,5 +172,27 @@ To explore the relationship between cooking time and average rating, we created 
   height="600"
   frameborder="0"
 ></iframe>
+
+This is important because it allows us to categorize recipes into meaningful groups based on their cooking time — like **Short (<20 min)**, **Medium (20-60 min)**, **Long (60-120 min)**, and **Extra Long (>120 min)**. This helps reveal patterns or trends that might not be obvious when looking at raw minute values. 
+
+By binning cooking times, we can clearly compare how different time ranges affect recipe ratings. For example, users might rate quick recipes higher due to convenience, or they might prefer longer, more complex recipes if they believe the effort results in better meals. Without these bins, the minute data would be too granular, making it harder to spot these relationships. 
+
+
+### Interesting Aggregates
+
+In our `filtered_df`, a few columns would be good to group and pivot. We added the `cooking_time_bins` column and we’ve already categorized cooking times, so grouping by these bins can reveal trends like average ratings for each time category. We can also group by the ratings to show how cooking time affects the user ratings.
+
+| cooking_time_bins       | avg_rating (mean) | count |
+|-------------------------|-------------------|-------|
+| Short (<20 min)         | 4.662133          | 22894 |
+| Medium (20-60 min)      | 4.609567          | 38094 |
+| Long (60-120 min)       | 4.627442          | 11840 |
+| Extra Long (>120 min)   | 4.588253          | 7566  |
+
+In this pivot table:
+- cooking_time_bins reflects how long a recipe takes, which can impact user satisfaction.
+- avg_rating shows how users rate recipes, helping identify if quick recipes are rated better than time-consuming ones.
+- mean and count lets us see both the average rating and how many recipes fall into each category.
+
 
 
