@@ -273,7 +273,12 @@ Test Statistic: The difference in mean between longer .
 
 Significance Level: 0.05
 
-–plotly–
+<iframe
+  src="assets/fig_permTest.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 Conclusion
 Since the p-value is below 0.05, we **reject the null hypothesis**. This indicates that cooking time does not have a statistically significant effect on the average rating of recipes. 
