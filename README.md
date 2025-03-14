@@ -233,7 +233,12 @@ To check the missingness of `avg_rating`, we tested to see if there are any colu
 
 **Significance level**: 0.01
 
---input plotly--
+<iframe
+  src="assets/fig_marMinutes.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 Interpretation: We ran the test by shuffling missingness 1000 times and we got a 130.29 observed difference which is shown on the graph. Since the p-value we got was (0) is less than our significance level (0.01), we **reject the null hypothesis** thus the missingness of `avg_ratings` is not dependent on the `minutes` it takes to complete the recipe
 
