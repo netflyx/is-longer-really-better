@@ -101,7 +101,7 @@ This is what `average_ratings` looks like:
 Merged `average_ratings` and  `deduplicated_df` on their shared column ‘id’ and kept left. The resulting dataframe is `merged_avg_df`.
 
 6. Filtering outliers:
-   - In order to take care of outliers, we cap the minutes at the 99th percentile. **HELP: give reason why**
+   - In order to take care of outliers, we cap the minutes at the 99th percentile. **HELP: give reason why pls**
    - The resulting dataframe is named `filtered_df`, and this is the dataframe we will be working with for the rest of the project
 
 
@@ -157,7 +157,7 @@ Because we've capped the minutes at the 99th percentile, the x-axis is no longer
 
 ### Bivariate Analysis
 
-To explore the relationship between cooking time and average rating, we created a scatter plot and a box plot. The scatter plot shows how ratings vary with cooking time, while the box plot groups cooking times into short, medium, long, and extra-long categories to highlight trends. From the scatterplot, we observe that there’s crowding when the cooking time is less than 100 minutes. **HELP ADD STUFF**
+To explore the relationship between cooking time and average rating, we created a scatter plot and a box plot. The scatter plot shows how ratings vary with cooking time, while the box plot groups cooking times into short, medium, long, and extra-long categories to highlight trends. From the scatterplot, we observe that there’s crowding when the cooking time is less than 100 minutes. **HELP ADD STUFF PLS**
 
 <iframe
   src="assets/fig_bivariate_scatter.html"
