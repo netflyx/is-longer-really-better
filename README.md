@@ -1,4 +1,3 @@
-# Is Longer Really Better?
 ## Analysis Of The Relationship Between Cooking Time And Average Enjoyment Rating.
 Authors: Alyxandrea Wikarsa & Jennifer Kuei
 
@@ -48,14 +47,14 @@ To make our dataset more convenient for our analysis, we did the following steps
    - Convert the date to a datetime format in case we need to take data overtime.
    - Changed the values in the ‘rating’ column. The ratings are generally 1 (lowest) to 5 (highest). In order to avoid outliers, we changed all zeroes to np.nan. We also ensured that there were no ratings higher than 5.
   
-  This is what `interactions_df` looks like after cleanup:
-  | Column             | Data type   |
-  | :----------------- | :---------- |
-  | `'user_id'`        | int64       |
-  | `'recipe_id'`      | int64       |
-  | `'date'`           | datetime64[ns] |
-  | `'rating'`         | float64     |
-  | `'review'`         | object      |
+This is what `interactions_df` looks like after cleanup:
+| Column    | Data Type      |
+|-----------|----------------|
+| user_id   | int64          |
+| recipe_id | int64          |
+| date      | datetime64[ns] |
+| rating    | float64        |
+| review    | object         |
 
 
 2. Cleaning up the recipes dataset:
@@ -64,21 +63,21 @@ To make our dataset more convenient for our analysis, we did the following steps
    - Dropped rows that minutes less than / equal to zero. Generally, we expect cooking time to be at least one minute, so we removed zero minute values from our analysis.
    - Values that appear as lists in the dataset are actually strings. We created a function to convert it into a list object.
   
-  This is what `recipes_df` looked like after cleanup:
-  | Column             | Data type   |
-  | :----------------- | :---------- |
-  | `'name'`           | object      |
-  | `'id'`             | int64       |
-  | `'minutes'`        | int64       |
-  | `'contributor_id'` | int64       |
-  | `'submitted'`      | datetime64[ns] |
-  | `'tags'`           | object      |
-  | `'nutrition'`      | object      |
-  | `'n_steps'`        | int64       |
-  | `'steps'`          | object      |
-  | `'description'`    | object      |
-  | `'ingredients'`    | object      |
-  | `'n_ingredients'`  | int64       |
+This is what `recipes_df` looked like after cleanup:
+| Column          | Data Type      |
+|-----------------|----------------|
+| name            | object         |
+| id              | int64          |
+| minutes         | int64          |
+| contributor_id  | int64          |
+| submitted       | datetime64[ns] |
+| tags            | object         |
+| nutrition       | object         |
+| n_steps         | int64          |
+| steps           | object         |
+| description     | object         |
+| ingredients     | object         |
+| n_ingredients   | int64          |
 
 
 3. Merging the datasets:
@@ -104,27 +103,26 @@ Merged `average_ratings` and  `deduplicated_df` on their shared column ‘id’ 
 
 ### Results
 Here are all the columns in `filtered_df`:
-| Column             | Data type   |
-| :----------------- | :---------- |
-| `'id'`             | int64       |
-| `'avg_rating'`     | float64     |
-| `'name'`           | object      |
-| `'id'`             | int64       |
-| `'minutes'`        | int64       |
-| `'contributor_id'` | int64       |
-| `'submitted'`      | datetime64[ns] |
-| `'tags'`           | object      |
-| `'nutrition'`      | object      |
-| `'n_steps'`        | int64       |
-| `'steps'`          | object      |
-| `'description'`    | object      |
-| `'ingredients'`    | object      |
-| `'n_ingredients'`  | int64       |
-| `'user_id'`        | int64       |
-| `'recipe_id'`      | int64       |
-| `'date'`           | datetime64[ns] |
-| `'rating'`         | float64     |
-| `'review'`         | object      |
+| Column             | Data Type        |
+|--------------------|------------------|
+| `id`               | int64            |
+| `avg_rating`       | float64          |
+| `name`             | object           |
+| `minutes`          | int64            |
+| `contributor_id`   | int64            |
+| `submitted`        | datetime64[ns]   |
+| `tags`             | object           |
+| `nutrition`        | object           |
+| `n_steps`          | int64            |
+| `steps`            | object           |
+| `description`      | object           |
+| `ingredients`      | object           |
+| `n_ingredients`    | int64            |
+| `user_id`          | int64            |
+| `recipe_id`        | int64            |
+| `date`             | datetime64[ns]   |
+| `rating`           | float64          |
+| `review`           | object           |
 
 
 Our cleaned dataframe has 83781 rows and 18 columns. Here is a preview of the first 5 rows of our cleaned dataframe. We selected the columns that are most relevant to our questions for display. 
@@ -144,5 +142,30 @@ Scroll right to view more columns.
 For our univariate analysis, we focused on examining the distribution of cooking time by minutes. The cooking time distribution shows that it is right-skewed, with most recipes taking a short time to cook and a few taking much longer.
 
 Because we've capped the minutes at the 99th percentile, the x-axis is no longer stretched completely, so the plot is easier to read. Here, the plot seems to have a downwards sloping trend after it hits a certain point before 50 minutes.
+
+<iframe
+  src="assets/fig_univariate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+### Bivariate Analysis
+
+To explore the relationship between cooking time and average rating, we created a scatter plot and a box plot. The scatter plot shows how ratings vary with cooking time, while the box plot groups cooking times into short, medium, long, and extra-long categories to highlight trends. From the scatterplot, we observe that there’s crowding when the cooking time is less than 100 minutes. **HELP ADD STUFF**
+
+iframe
+  src="assets/fig_bivariate_scatter.html.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+iframe
+  src="assets/fig_bivariate_box.html.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 
