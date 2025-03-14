@@ -252,6 +252,21 @@ Interpretation: We ran the test by shuffling missingness 1000 times and we got a
 
 
 ## Hypothesis Testing
+As mentioned in the introduction, we aim to determine whether cooking time is correlated with the average rating of recipes. Some people may assume that longer cooking times result in better flavors and higher ratings, while others may prefer quicker meals. To investigate this relationship, we conducted a permutation test. We first sorted the lengths of the cooking times into two groups, one long one short by determining if it was longer or shorter than the median cooking time. We then used the following hypotheses for our testing:
+
+Null Hypothesis (H0): There is no relationship between cooking time and the average rating of recipes.
+
+Alternative Hypothesis (Ha): There is a relationship between cooking time and the average rating of recipes.
+
+Test Statistic: The difference in mean between longer .
+
+Significance Level: 0.05
+
+–plotly–
+
+Conclusion
+Since the p-value is below 0.05, we **reject the null hypothesis**. This indicates that cooking time does not have a statistically significant effect on the average rating of recipes. 
+
 
 
 ## Framing a Prediction Problem
