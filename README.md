@@ -1,7 +1,8 @@
----
-title: "Is Longer Really Better?"
-description: "Analysis Of The Relationship Between Cooking Time And Average Enjoyment Rating.."
----
+## Is Longer Really Better?
+{:.no_toc}
+
+# Analysis Of The Relationship Between Cooking Time And Average Enjoyment Rating. DSC80 Winter 2025 Project
+{:.no_toc}
 
 Authors: Alyxandrea Wikarsa & Jennifer Kuei
 
