@@ -320,14 +320,52 @@ A quantitative (continuous) feature representing the number of ingredients used 
 
 **Model Evaluation**  
 After splitting the data into training (70%) and test (30%) sets, the pipeline was trained and evaluated. The baseline model achieved:  
-Mean Squared Error: 0.41
-R-squared: 0.00
+**Mean Squared Error: 0.4102343447579613**
+**R-squared: 0.0011947928498579063**
+
 
 **Model Quality**
 While the MSE and R² provide a starting point, this baseline model is relatively simple and likely underfits the data. It does not capture complex relationships between features or interactions between cooking time, ingredient count, and other factors that might influence a recipe's rating. The next steps will involve exploring additional features, testing more complex models, and fine-tuning hyperparameters to improve predictive performance.  
 
 
 ## Final Model
+
+We wanted to build a model that builds on the initial baseline model, which lacked predictive power. The hypothesis is that longer cooking times, more steps, and more ingredients may reflect more complex recipes, potentially influencing ratings.  
+
+**Feature Engineering:**  
+To improve the model from the baseline, we added an engineered feature:
+- Number of Ingredients (`n_ingredients`): Calculated by counting the length of the `ingredients` column. This is because more ingredients might imply a more intricate recipe.
+
+
+These were combined with `minutes` and `n_steps` to form the feature set:  
+- Cooking time (minutes)
+- Number of steps
+- Number of ingredients
+
+For the model, we used a **Random Forest Regressor**. We thought this might be best because it handles nonlinear relationships well, which suits our hypothesis about how cooking time, steps, and ingredients might interact with ratings.  It’s also more robust to overfitting when combined with hyperparameter tuning.  
+
+**Hyperparameter Tuning:**  
+We optimized the following hyperparameters using **GridSearchCV** with 5-fold cross-validation:  
+- n_estimators		   : Number of trees in the forest — tested 100, 200, and 300.
+- max_depth		      : Maximum depth of the tree — tested 5, 10, and 15.
+- min_samples_split	: Minimum samples required to split a node — tested 2, 5, and 10.
+- max_features      	: Number of features to consider for a split — tested `sqrt` and `log2`.  
+
+The best hyperparameters were:  
+- max_depth		      : 5
+- max_features	      : `sqrt`
+- min_samples_split	: 5
+- n_estimators 	   : 300  
+
+**Model Evaluation:**  
+The final model's performance on the test set:  
+**Mean Squared Error: 0.40994590758244304**
+**R-squared: 0.0018970562184047468**
+
+**Comparison to Baseline:**  
+The baseline model had an R² of **0.0012** and an MSE of **0.41**, and the final model has a very slight improvement, with an R² of **0.0019** — suggesting that the additional features and hyperparameter tuning had minimal effect.  
+The small R² value indicates that the model still struggles to explain the variance in average ratings, meaning cooking time, number of steps, and number of ingredients do not strongly predict ratings.  
+We think that this may be because ratings may be influenced by other factors like user preferences, recipe descriptions, or presentation, not just complexity or cooking time. Another possible reason is the relationship may be nonlinear or more nuanced, requiring more sophisticated features (e.g., interaction terms, cuisine type).  
 
 
 ## Fairness Analysis
