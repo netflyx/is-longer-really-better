@@ -1,3 +1,4 @@
+Is Longer Really Better?
 ## Analysis Of The Relationship Between Cooking Time And Average Enjoyment Rating.
 Authors: Alyxandrea Wikarsa & Jennifer Kuei
 
@@ -49,7 +50,7 @@ To make our dataset more convenient for our analysis, we did the following steps
   
 This is what `interactions_df` looks like after cleanup:
 | Column    | Data Type      |
-|-----------|----------------|
+|:----------|:---------------|
 | user_id   | int64          |
 | recipe_id | int64          |
 | date      | datetime64[ns] |
@@ -65,7 +66,7 @@ This is what `interactions_df` looks like after cleanup:
   
 This is what `recipes_df` looked like after cleanup:
 | Column          | Data Type      |
-|-----------------|----------------|
+|:----------------|:---------------|
 | name            | object         |
 | id              | int64          |
 | minutes         | int64          |
@@ -86,11 +87,11 @@ This is what `recipes_df` looked like after cleanup:
 4. Adding a column for average ratings:
    - Created a copy of the merged dataframe using groupby and added a new column, ‘avg_rating’, which shows the average rating of each recipe (grouped by ‘id’). We named this dataframe `average_ratings`.
   
-  This is what `average_ratings` looks like:
-  | Column             | Data type   |
-  | :----------------- | :---------- |
-  | `'id'`             | int64       |
-  | `'avg_rating'`     | float64     |
+This is what `average_ratings` looks like:
+| Column             | Data type   |
+| :----------------- | :---------- |
+| `'id'`             | int64       |
+| `'avg_rating'`     | float64     |
 
 5. Merging the datasets (again):
    - We want to create a dataframe that only has one rating for each duplicate recipe, which means we need to drop the duplicate ‘id’ values on merged_df before merging it with average_raitngs. 
@@ -104,7 +105,7 @@ Merged `average_ratings` and  `deduplicated_df` on their shared column ‘id’ 
 ### Results
 Here are all the columns in `filtered_df`:
 | Column             | Data Type        |
-|--------------------|------------------|
+|:-------------------|:-----------------|
 | `id`               | int64            |
 | `avg_rating`       | float64          |
 | `name`             | object           |
@@ -129,7 +130,7 @@ Our cleaned dataframe has 83781 rows and 18 columns. Here is a preview of the fi
 Scroll right to view more columns.
 
 | id      | name                                    | minutes | avg_rating |
-|---------|-----------------------------------------|---------|------------|
+|:--------|:----------------------------------------|:--------|:-----------|
 | 275022  | impossible macaroni and cheese pie      | 50      | 3.0        |
 | 275024  | impossible rhubarb pie                  | 55      | 3.0        |
 | 275026  | impossible seafood pie                  | 45      | 3.0        |
@@ -155,14 +156,14 @@ Because we've capped the minutes at the 99th percentile, the x-axis is no longer
 To explore the relationship between cooking time and average rating, we created a scatter plot and a box plot. The scatter plot shows how ratings vary with cooking time, while the box plot groups cooking times into short, medium, long, and extra-long categories to highlight trends. From the scatterplot, we observe that there’s crowding when the cooking time is less than 100 minutes. **HELP ADD STUFF**
 
 iframe
-  src="assets/fig_bivariate_scatter.html.html"
+  src="assets/fig_bivariate_scatter.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
 
 iframe
-  src="assets/fig_bivariate_box.html.html"
+  src="assets/fig_bivariate_box.html"
   width="800"
   height="600"
   frameborder="0"
