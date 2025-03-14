@@ -1,4 +1,4 @@
-Is Longer Really Better?
+### Is Longer Really Better?
 ## Analysis Of The Relationship Between Cooking Time And Average Enjoyment Rating.
 Authors: Alyxandrea Wikarsa & Jennifer Kuei
 
@@ -49,6 +49,7 @@ To make our dataset more convenient for our analysis, we did the following steps
    - Changed the values in the ‘rating’ column. The ratings are generally 1 (lowest) to 5 (highest). In order to avoid outliers, we changed all zeroes to np.nan. We also ensured that there were no ratings higher than 5.
   
 This is what `interactions_df` looks like after cleanup:
+
 | Column    | Data Type      |
 |:----------|:---------------|
 | user_id   | int64          |
@@ -65,6 +66,7 @@ This is what `interactions_df` looks like after cleanup:
    - Values that appear as lists in the dataset are actually strings. We created a function to convert it into a list object.
   
 This is what `recipes_df` looked like after cleanup:
+
 | Column          | Data Type      |
 |:----------------|:---------------|
 | name            | object         |
@@ -88,6 +90,7 @@ This is what `recipes_df` looked like after cleanup:
    - Created a copy of the merged dataframe using groupby and added a new column, ‘avg_rating’, which shows the average rating of each recipe (grouped by ‘id’). We named this dataframe `average_ratings`.
   
 This is what `average_ratings` looks like:
+
 | Column             | Data type   |
 | :----------------- | :---------- |
 | `'id'`             | int64       |
@@ -104,6 +107,7 @@ Merged `average_ratings` and  `deduplicated_df` on their shared column ‘id’ 
 
 ### Results
 Here are all the columns in `filtered_df`:
+
 | Column             | Data Type        |
 |:-------------------|:-----------------|
 | `id`               | int64            |
@@ -155,14 +159,14 @@ Because we've capped the minutes at the 99th percentile, the x-axis is no longer
 
 To explore the relationship between cooking time and average rating, we created a scatter plot and a box plot. The scatter plot shows how ratings vary with cooking time, while the box plot groups cooking times into short, medium, long, and extra-long categories to highlight trends. From the scatterplot, we observe that there’s crowding when the cooking time is less than 100 minutes. **HELP ADD STUFF**
 
-iframe
+<iframe
   src="assets/fig_bivariate_scatter.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
 
-iframe
+<iframe
   src="assets/fig_bivariate_box.html"
   width="800"
   height="600"
