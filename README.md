@@ -258,7 +258,7 @@ We did another test on missingness to check if `avg_ratings` was dependent on `p
 ></iframe>
 
 
-Interpretation: We ran the test by shuffling missingness 1000 times and we got a 130.29 observed difference which is shown on the graph. Since the p-value we got was (0) is less than our significance level (0.01), we **fail to reject the null hypothesis** thus the missingness of `avg_ratings` might be dependent on the `minutes` it takes to complete the recipe
+Interpretation: We ran the test by shuffling missingness 1000 times and we got a 130.29 observed difference which is shown on the graph. Since the p-value we got was (0.14) is greater than our significance level (0.01), we **fail to reject the null hypothesis** thus the missingness of `avg_ratings` might be dependent on the `protein` in the recipe.
 
 
 ## <code style=" color : lightskyblue"> Hypothesis Testing </code>
