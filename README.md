@@ -216,4 +216,54 @@ In this pivot table:
 - mean and count lets us see both the average rating and how many recipes fall into each category.
 
 
+## Assessment of Missingness
+
+### NMAR Analysis
+
+### Missingness Dependency
+
+
+
+## Hypothesis Testing
+
+
+## Framing a Prediction Problem
+
+
+
+## Baseline Model
+
+The baseline model for this project is a linear regression model aimed at predicting the average rating (`avg_rating`) of recipes based on two features:  
+
+1. Cooking time bins (`cooking_time_bins`)
+A categorical (nominal) feature that classifies recipes into four categories:
+Short (<20 min)
+Medium (20-60 min)
+Long (60-120 min)
+Extra Long (>120 min)
+This feature was created by binning the `minutes` column using `pd.cut()`. One-hot encoding was applied to convert these categories into a format suitable for the regression model.  
+
+2. Number of ingredients (`n_ingredients`)
+A quantitative (continuous) feature representing the number of ingredients used in each recipe. This feature was standardized using `StandardScaler()` to ensure it had a mean of 0 and a standard deviation of 1.  
+
+**Encoding and Transformations**  
+- The nominal feature (`cooking_time_bins`) was transformed using **one-hot encoding** to create binary columns for each category.  
+- The quantitative feature (`n_ingredients`) was standardized to account for different scales and improve model performance.  
+- Any rows with missing target values (`avg_rating`) were removed to prevent errors during training.  
+
+**Model Evaluation**  
+After splitting the data into training (70%) and test (30%) sets, the pipeline was trained and evaluated. The baseline model achieved:  
+Mean Squared Error: 0.41
+R-squared: 0.00
+
+**Model Quality**
+While the MSE and R² provide a starting point, this baseline model is relatively simple and likely underfits the data. It does not capture complex relationships between features or interactions between cooking time, ingredient count, and other factors that might influence a recipe's rating. The next steps will involve exploring additional features, testing more complex models, and fine-tuning hyperparameters to improve predictive performance.  
+
+
+## Final Model
+
+
+## Fairness Analysis
+
+
 
