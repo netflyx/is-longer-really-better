@@ -95,7 +95,7 @@ To make our dataset more convenient for our analysis, we did the following steps
 
 5. Merging the datasets (again):
    - We want to create a dataframe that only has one rating for each duplicate recipe, which means we need to drop the duplicate ‘id’ values on merged_df before merging it with average_raitngs. 
-Merged ‘average_ratings’ and  `deduplicated_df` on their shared column ‘id’ and kept left. The resulting dataframe is `merged_avg_df`.
+Merged `average_ratings` and  `deduplicated_df` on their shared column ‘id’ and kept left. The resulting dataframe is `merged_avg_df`.
 
 6. Filtering outliers:
    - In order to take care of outliers, we cap the minutes at the 99th percentile. **HELP: give reason why**
@@ -130,13 +130,13 @@ Here are all the columns in `filtered_df`:
 Our cleaned dataframe has 83781 rows and 18 columns. Here is a preview of the first 5 rows of our cleaned dataframe. We selected the columns that are most relevant to our questions for display. 
 Scroll right to view more columns.
 
-| id      | name                                    | minutes | avg_rating | rating |
-|---------|-----------------------------------------|---------|------------|--------|
-| 275022  | impossible macaroni and cheese pie      | 50      | 3.0        | 4.0    |
-| 275024  | impossible rhubarb pie                  | 55      | 3.0        | 3.0    |
-| 275026  | impossible seafood pie                  | 45      | 3.0        | 1.0    |
-| 275030  | paula deen's caramel apple cheesecake   | 45      | 5.0        | 5.0    |
-| 275032  | midori poached pears                    | 25      | 5.0        | 5.0    |
+| id      | name                                    | minutes | avg_rating |
+|---------|-----------------------------------------|---------|------------|
+| 275022  | impossible macaroni and cheese pie      | 50      | 3.0        |
+| 275024  | impossible rhubarb pie                  | 55      | 3.0        |
+| 275026  | impossible seafood pie                  | 45      | 3.0        |
+| 275030  | paula deen's caramel apple cheesecake   | 45      | 5.0        |
+| 275032  | midori poached pears                    | 25      | 5.0        |
 
 
 ### Univariate Analysis
