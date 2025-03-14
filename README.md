@@ -68,9 +68,10 @@ This is what `interactions_df` looks like after cleanup:
 This is what `recipes_df` looked like after cleanup:
 
 | Column          | Data Type      |
-|:----------------|:---------------|
-| name            | object         |
+|-----------------|----------------|
 | id              | int64          |
+| avg_rating      | float64        |
+| name            | object         |
 | minutes         | int64          |
 | contributor_id  | int64          |
 | submitted       | datetime64[ns] |
@@ -81,6 +82,18 @@ This is what `recipes_df` looked like after cleanup:
 | description     | object         |
 | ingredients     | object         |
 | n_ingredients   | int64          |
+| calories        | object         |
+| total_fat       | object         |
+| sugar           | object         |
+| sodium          | object         |
+| protein         | object         |
+| saturated_fat   | object         |
+| carbohydrates   | object         |
+| user_id         | float64        |
+| recipe_id       | float64        |
+| date            | datetime64[ns] |
+| rating          | float64        |
+| review          | object         |
 
 
 3. Merging the datasets:
@@ -108,29 +121,37 @@ Merged `average_ratings` and  `deduplicated_df` on their shared column ‘id’ 
 ### Results
 Here are all the columns in `filtered_df`:
 
-| Column             | Data Type        |
-|:-------------------|:-----------------|
-| `id`               | int64            |
-| `avg_rating`       | float64          |
-| `name`             | object           |
-| `minutes`          | int64            |
-| `contributor_id`   | int64            |
-| `submitted`        | datetime64[ns]   |
-| `tags`             | object           |
-| `nutrition`        | object           |
-| `n_steps`          | int64            |
-| `steps`            | object           |
-| `description`      | object           |
-| `ingredients`      | object           |
-| `n_ingredients`    | int64            |
-| `user_id`          | int64            |
-| `recipe_id`        | int64            |
-| `date`             | datetime64[ns]   |
-| `rating`           | float64          |
-| `review`           | object           |
+| Column          | Data Type      |
+|-----------------|----------------|
+| id              | int64          |
+| avg_rating      | float64        |
+| name            | object         |
+| minutes         | int64          |
+| contributor_id  | int64          |
+| submitted       | datetime64[ns] |
+| tags            | object         |
+| nutrition       | object         |
+| n_steps         | int64          |
+| steps           | object         |
+| description     | object         |
+| ingredients     | object         |
+| n_ingredients   | int64          |
+| calories        | object         |
+| total_fat       | object         |
+| sugar           | object         |
+| sodium          | object         |
+| protein         | object         |
+| saturated_fat   | object         |
+| carbohydrates   | object         |
+| user_id         | float64        |
+| recipe_id       | float64        |
+| date            | datetime64[ns] |
+| rating          | float64        |
+| review          | object         |
 
 
-Our cleaned dataframe has 83781 rows and 18 columns. Here is a preview of the first 5 rows of our cleaned dataframe. We selected the columns that are most relevant to our questions for display. 
+
+Our cleaned dataframe has 82948 rows and 25 columns. Here is a preview of the first 5 rows of our cleaned dataframe. We selected the columns that are most relevant to our questions for display. 
 Scroll right to view more columns.
 
 | id      | name                                    | minutes | avg_rating |
