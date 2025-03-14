@@ -286,6 +286,13 @@ Since the p-value is below 0.05, we **reject the null hypothesis**. This indicat
 
 
 ## Framing a Prediction Problem
+For our prediction problem, we are planning on predicting the **average rating** of a recipe. This is a **regression** problem since the response variable, average rating, is continuous between 1 and 5, not categorical as it contains decimal values.
+
+The response variable is **the average rating of the recipe** and we chose this as we believe it best encapsulates overall feeling towards a recipe from the audience which is useful for not only other users, but also recipe creators.  	
+
+To evaluate our model, we decided to use Mean Square Error (MSE) and R2 as it can help us review how accurate our predictions are compared to the observations. The R-squared will also show how well our regression model fits the data on a range of 0-1, with 0 being the model not showing the vibration in the target very accurately, while a 1 is more accurate and reliable. 
+
+When regarding features, almost all of the columns would be available for use while predicting the average rating during the “time of prediction”, except for ratings and reviews as we would ideally predict before users leave reviews. 
 
 
 
