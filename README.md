@@ -1,6 +1,6 @@
 ---
 title: "Is Longer Really Better?"
-permalink: /is-longer-really-better/
+permalink: is-longer-really-better/
 ---
 
 ## Analysis Of The Relationship Between Cooking Time And Average Enjoyment Rating.
