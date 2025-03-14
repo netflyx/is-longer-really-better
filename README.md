@@ -217,11 +217,38 @@ In this pivot table:
 
 
 ## Assessment of Missingness
-
+In our data, there are three columns that have a significant amount of missing values `review`, `rating`, and `avg_rating` 
 ### NMAR Analysis
+I think that the missing values for review are not missing at random. This is due to the fact that many people might not care to leave a review unless they either loved or hated it (1 or a 5) but if they were more neutral on it, they might not have left a review.
 
 ### Missingness Dependency
 
+To check the missingness of `avg_rating`, we tested to see if there are any columns that it depends on. So for this one, we tested if `avg_rating` was dependent on `minutes`. A hypothesis test was set up with the following hypotheses:
+
+**Null hypothesis**: The missingness of avg ratings does not depend on the minutes column
+
+**Alternative hypothesis**: Null hypothesis: The missingness of avg ratings does depend on the minutes column
+
+**Test Statistic**: Absolute difference of means (avg amount of minutes with rating missing - avg amount of minutes with rating not missing)
+
+**Significance level**: 0.01
+
+--input plotly--
+
+Interpretation: We ran the test by shuffling missingness 1000 times and we got a 130.29 observed difference which is shown on the graph. Since the p-value we got was (0) is less than our significance level (0.01), we **reject the null hypothesis** thus the missingness of `avg_ratings` is not dependent on the `minutes` it takes to complete the recipe
+
+We did another test on missingness to check if `avg_ratings` was dependent on `protein` which involves the same steps but with the following hypotheses instead:
+**Null hypothesis**: The missingness of avg ratings does not depend on the protein column
+
+**Alternative hypothesis**: Null hypothesis: The missingness of avg ratings does depend on the protein column
+
+**Test Statistic**: Absolute difference of means (avg amount of protein with rating missing - avg amount of minutes with protein not missing)
+
+**Significance level**: 0.01
+
+--plotly--
+
+Interpretation: We ran the test by shuffling missingness 1000 times and we got a 130.29 observed difference which is shown on the graph. Since the p-value we got was (0) is less than our significance level (0.01), we **fail to reject the null hypothesis** thus the missingness of `avg_ratings` might be dependent on the `minutes` it takes to complete the recipe
 
 
 ## Hypothesis Testing
