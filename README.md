@@ -313,17 +313,19 @@ This feature was created by binning the `minutes` column using `pd.cut()`. One-h
 A quantitative (continuous) feature representing the number of ingredients used in each recipe. This feature was standardized using `StandardScaler()` to ensure it had a mean of 0 and a standard deviation of 1.  
 
 **Encoding and Transformations:**  
+
 - The nominal feature (`cooking_time_bins`) was transformed using **one-hot encoding** to create binary columns for each category.  
 - The quantitative feature (`n_ingredients`) was standardized to account for different scales and improve model performance.  
 - Any rows with missing target values (`avg_rating`) were removed to prevent errors during training.  
 
 **Model Evaluation:**  
+
 After splitting the data into training (70%) and test (30%) sets, the pipeline was trained and evaluated. The baseline model achieved:  
 - **Mean Squared Error: 0.4102343447579613**
 - **R-squared: 0.0011947928498579063**
 
+**Model Quality:**   
 
-**Model Quality:**
 While the MSE and R² provide a starting point, this baseline model is relatively simple and likely underfits the data. It does not capture complex relationships between features or interactions between cooking time, ingredient count, and other factors that might influence a recipe's rating. The next steps will involve exploring additional features, testing more complex models, and fine-tuning hyperparameters to improve predictive performance.  
 
 
@@ -344,6 +346,7 @@ These were combined with `minutes` and `n_steps` to form the feature set:
 For the model, we used a **Random Forest Regressor**. We thought this might be best because it handles nonlinear relationships well, which suits our hypothesis about how cooking time, steps, and ingredients might interact with ratings.  It’s also more robust to overfitting when combined with hyperparameter tuning.  
 
 **Hyperparameter Tuning:**  
+
 We optimized the following hyperparameters using **GridSearchCV** with 5-fold cross-validation:  
 - n_estimators		   : Number of trees in the forest — tested 100, 200, and 300.
 - max_depth		      : Maximum depth of the tree — tested 5, 10, and 15.
@@ -351,17 +354,20 @@ We optimized the following hyperparameters using **GridSearchCV** with 5-fold cr
 - max_features      	: Number of features to consider for a split — tested `sqrt` and `log2`.  
 
 The best hyperparameters were:  
+
 - max_depth		      : 5
 - max_features	      : `sqrt`
 - min_samples_split	: 5
 - n_estimators 	   : 300  
 
 **Model Evaluation:**  
+
 The final model's performance on the test set:  
 - **Mean Squared Error: 0.40994590758244304**
 - **R-squared: 0.0018970562184047468**
 
 **Comparison to Baseline:**  
+
 The baseline model had an R² of **0.0012** and an MSE of **0.41**, and the final model has a very slight improvement, with an R² of **0.0019** — suggesting that the additional features and hyperparameter tuning had minimal effect.  
 
 The small R² value indicates that the model still struggles to explain the variance in average ratings, meaning cooking time, number of steps, and number of ingredients do not strongly predict ratings.  
@@ -392,7 +398,8 @@ Significance Level   = 0.05.
   frameborder="0"
 ></iframe>
 
-**Conclusion:**
+**Conclusion:**   
+
 After running our permutation test, we get a p-value of 0.1902  which is greater than our significance level of 0.05 meaning that **we fail to reject the null hypothesis** which means our model for the newer and older recipes should be fair and any differences are due to random chance. 
 
 
