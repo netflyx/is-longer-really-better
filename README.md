@@ -1,5 +1,6 @@
 # Is Longer Really Better?
-## Analysis Of The Relationship Between Cooking Time And Average Enjoyment Rating. DSC80 Winter 2025 Project
+
+## Analysis Of The Relationship Between Cooking Time And Average Enjoyment Rating.
 
 Authors: Alyxandrea Wikarsa & Jennifer Kuei
 
@@ -12,30 +13,30 @@ Who doesn't prefer good food? With so many recipes available especially online, 
 
 The `recipe` dataset, taken from `RAW_recipes.csv`, contains 83782 rows, indicating 83782 unique recipes, with 10 columns recording the following information:
 
-| Column             | Description                                                                                                                                                                                       |
-| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `'name'`           | Recipe name                                                                                                                                                                                       |
-| `'id'`             | Recipe ID                                                                                                                                                                                         |
-| `'minutes'`        | Minutes to prepare recipe                                                                                                                                                                         |
-| `'contributor_id'` | User ID who submitted this recipe                                                                                                                                                                 |
-| `'submitted'`      | Date recipe was submitted                                                                                                                                                                         |
-| `'tags'`           | Food.com tags for recipe                                                                                                                                                                          |
-| `'nutrition'`      | Nutrition information in the form [calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]; PDV stands for “percentage of daily value” |
-| `'n_steps'`        | Number of steps in recipe                                                                                                                                                                         |
-| `'steps'`          | Text for recipe steps, in order                                                                                                                                                                   |
-| `'description'`    | User-provided description                                                                                                                                                                         |
-| `'ingredients'`    | Text for recipe ingredients                                                                                                                                                                       |
-| `'n_ingredients'`  | Number of ingredients in recipe                                                                                                                                                                   |
+| Column           | Description                                                                                                                                                                                       |
+| :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `name`           | Recipe name                                                                                                                                                                                       |
+| `id`             | Recipe ID                                                                                                                                                                                         |
+| `minutes`        | Minutes to prepare recipe                                                                                                                                                                         |
+| `contributor_id` | User ID who submitted this recipe                                                                                                                                                                 |
+| `submitted`      | Date recipe was submitted                                                                                                                                                                         |
+| `tags`           | Food.com tags for recipe                                                                                                                                                                          |
+| `nutrition`      | Nutrition information in the form [calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]; PDV stands for “percentage of daily value” |
+| `n_steps`        | Number of steps in recipe                                                                                                                                                                         |
+| `steps`          | Text for recipe steps, in order                                                                                                                                                                   |
+| `description`    | User-provided description                                                                                                                                                                         |
+| `ingredients`    | Text for recipe ingredients                                                                                                                                                                       |
+| `n_ingredients`  | Number of ingredients in recipe                                                                                                                                                                   |
 
 The `interactions` dataset, taken from `interactions.csv`, contains 83782 rows, indicating 83782 unique recipes, with 10 columns recording the following information:
 
 | Column        | Data type           |
 | :------------ | :------------------ |
-| `'user_id'`   | User ID             |
-| `'recipe_id'` | Recipe ID           |
-| `'date'`      | Date of interaction |
-| `'rating'`    | Rating given        |
-| `'review'`    | Review text         |
+| `user_id`   | User ID             |
+| `recipe_id` | Recipe ID           |
+| `date`      | Date of interaction |
+| `rating`    | Rating given        |
+| `review`    | Review text         |
 
 **The columns that we are mainly focused on are ‘id’ and ‘minutes’ from `recipes` and ‘recipe_id’ and ‘rating’ from `interactions`.**
 
@@ -52,11 +53,11 @@ This is what `interactions_df` looks like after cleanup:
 
 | Column    | Data Type      |
 |:----------|:---------------|
-| user_id   | int64          |
-| recipe_id | int64          |
-| date      | datetime64[ns] |
-| rating    | float64        |
-| review    | object         |
+| `user_id` | int64          |
+| `recipe_id` | int64        |
+| `date`    | datetime64[ns] |
+| `rating`  | float64        |
+| `review`  | object         |
 
 
 2. Cleaning up the recipes dataset:
@@ -69,31 +70,31 @@ This is what `recipes_df` looked like after cleanup:
 
 | Column          | Data Type      |
 |-----------------|----------------|
-| id              | int64          |
-| avg_rating      | float64        |
-| name            | object         |
-| minutes         | int64          |
-| contributor_id  | int64          |
-| submitted       | datetime64[ns] |
-| tags            | object         |
-| nutrition       | object         |
-| n_steps         | int64          |
-| steps           | object         |
-| description     | object         |
-| ingredients     | object         |
-| n_ingredients   | int64          |
-| calories        | object         |
-| total_fat       | object         |
-| sugar           | object         |
-| sodium          | object         |
-| protein         | object         |
-| saturated_fat   | object         |
-| carbohydrates   | object         |
-| user_id         | float64        |
-| recipe_id       | float64        |
-| date            | datetime64[ns] |
-| rating          | float64        |
-| review          | object         |
+| `id`            | int64          |
+| `avg_rating`    | float64        |
+| `name`          | object         |
+| `minutes`       | int64          |
+| `contributor_id`| int64          |
+| `submitted`     | datetime64[ns] |
+| `tags`          | object         |
+| `nutrition`     | object         |
+| `n_steps`       | int64          |
+| `steps`         | object         |
+| `description`   | object         |
+| `ingredients`   | object         |
+| `n_ingredients` | int64          |
+| `calories`      | float64        |
+| `total_fat`     | float64        |
+| `sugar`         | float64        |
+| `sodium`        | float64        |
+| `protein`       | float64        |
+| `saturated_fat` | float64        |
+| `carbohydrates` | float64        |
+| `user_id`       | float64        |
+| `recipe_id`     | float64        |
+| `date`          | datetime64[ns] |
+| `rating`        | float64        |
+| `review`        | object         |
 
 
 3. Merging the datasets:
@@ -106,15 +107,15 @@ This is what `average_ratings` looks like:
 
 | Column             | Data type   |
 | :----------------- | :---------- |
-| `'id'`             | int64       |
-| `'avg_rating'`     | float64     |
+| `id`             | int64       |
+| `avg_rating`     | float64     |
 
 5. Merging the datasets (again):
    - We want to create a dataframe that only has one rating for each duplicate recipe, which means we need to drop the duplicate ‘id’ values on merged_df before merging it with average_raitngs. 
 Merged `average_ratings` and  `deduplicated_df` on their shared column ‘id’ and kept left. The resulting dataframe is `merged_avg_df`.
 
 6. Filtering outliers:
-   - In order to take care of outliers, we cap the minutes at the 99th percentile. **HELP: give reason why pls**
+   - In order to take care of outliers, we cap the minutes at the 99th percentile.
    - The resulting dataframe is named `filtered_df`, and this is the dataframe we will be working with for the rest of the project
 
 
@@ -123,31 +124,31 @@ Here are all the columns in `filtered_df`:
 
 | Column          | Data Type      |
 |-----------------|----------------|
-| id              | int64          |
-| avg_rating      | float64        |
-| name            | object         |
-| minutes         | int64          |
-| contributor_id  | int64          |
-| submitted       | datetime64[ns] |
-| tags            | object         |
-| nutrition       | object         |
-| n_steps         | int64          |
-| steps           | object         |
-| description     | object         |
-| ingredients     | object         |
-| n_ingredients   | int64          |
-| calories        | object         |
-| total_fat       | object         |
-| sugar           | object         |
-| sodium          | object         |
-| protein         | object         |
-| saturated_fat   | object         |
-| carbohydrates   | object         |
-| user_id         | float64        |
-| recipe_id       | float64        |
-| date            | datetime64[ns] |
-| rating          | float64        |
-| review          | object         |
+| `id`            | int64          |
+| `avg_rating`    | float64        |
+| `name`          | object         |
+| `minutes`       | int64          |
+| `contributor_id`| int64          |
+| `submitted`     | datetime64[ns] |
+| `tags`          | object         |
+| `nutrition`     | object         |
+| `n_steps`       | int64          |
+| `steps`         | object         |
+| `description`   | object         |
+| `ingredients`   | object         |
+| `n_ingredients` | int64          |
+| `calories`      | float64        |
+| `total_fat`     | float64        |
+| `sugar`         | float64        |
+| `sodium`        | float64        |
+| `protein`       | float64        |
+| `saturated_fat` | float64        |
+| `carbohydrates` | float64        |
+| `user_id`       | float64        |
+| `recipe_id`     | float64        |
+| `date`          | datetime64[ns] |
+| `rating`        | float64        |
+| `review`        | object         |
 
 
 
