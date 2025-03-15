@@ -48,16 +48,16 @@ To make our dataset more convenient for our analysis, we did the following steps
    - Filled in missing reviews with empty strings.
    - Convert the date to a datetime format in case we need to take data overtime.
    - Changed the values in the ‘rating’ column. The ratings are generally 1 (lowest) to 5 (highest). In order to avoid outliers, we changed all zeroes to np.nan. We also ensured that there were no ratings higher than 5.
-  
-This is what `interactions_df` looks like after cleanup:
-
-| Column    | Data Type      |
+   - This is what `interactions_df` looks like after cleanup:
+   - | Column    | Data Type      |
 |:----------|:---------------|
 | `user_id` | int64          |
 | `recipe_id` | int64        |
 | `date`    | datetime64[ns] |
 | `rating`  | float64        |
 | `review`  | object         |
+  
+
 
 
 2. Cleaning up the recipes dataset:
@@ -65,10 +65,8 @@ This is what `interactions_df` looks like after cleanup:
    - Convert the ‘submitted’ column values to a datetime format
    - Dropped rows that minutes less than / equal to zero. Generally, we expect cooking time to be at least one minute, so we removed zero minute values from our analysis.
    - Values that appear as lists in the dataset are actually strings. We created a function to convert it into a list object.
-  
-This is what `recipes_df` looked like after cleanup:
-
-| Column          | Data Type      |
+   - This is what `recipes_df` looked like after cleanup:
+   - | Column          | Data Type      |
 |-----------------|----------------|
 | `id`            | int64          |
 | `avg_rating`    | float64        |
@@ -97,22 +95,23 @@ This is what `recipes_df` looked like after cleanup:
 | `review`        | object         |
 
 
+
+
 3. Merging the datasets:
    - Our first merge was recipes (on ‘id’) and interactions (on ‘recipe_id’). We merged left, which means we kept the values on recipes. The resulting dataframe is named `merged_df`
 
 4. Adding a column for average ratings:
    - Created a copy of the merged dataframe using groupby and added a new column, ‘avg_rating’, which shows the average rating of each recipe (grouped by ‘id’). We named this dataframe `average_ratings`.
-  
-This is what `average_ratings` looks like:
-
-| Column             | Data type   |
+   - This is what `average_ratings` looks like:
+   - | Column             | Data type   |
 | :----------------- | :---------- |
 | `id`             | int64       |
 | `avg_rating`     | float64     |
 
+
 5. Merging the datasets (again):
-   - We want to create a dataframe that only has one rating for each duplicate recipe, which means we need to drop the duplicate ‘id’ values on merged_df before merging it with average_raitngs. 
-Merged `average_ratings` and  `deduplicated_df` on their shared column ‘id’ and kept left. The resulting dataframe is `merged_avg_df`.
+   - We want to create a dataframe that only has one rating for each duplicate recipe, which means we need to drop the duplicate ‘id’ values on merged_df before merging it with average_raitngs.
+   - Merged `average_ratings` and  `deduplicated_df` on their shared column ‘id’ and kept left. The resulting dataframe is `merged_avg_df`.
 
 6. Filtering outliers:
    - In order to take care of outliers, we cap the minutes at the 99th percentile.
@@ -318,8 +317,8 @@ A quantitative (continuous) feature representing the number of ingredients used 
 
 **Model Evaluation**  
 After splitting the data into training (70%) and test (30%) sets, the pipeline was trained and evaluated. The baseline model achieved:  
-**Mean Squared Error: 0.4102343447579613**
-**R-squared: 0.0011947928498579063**
+- **Mean Squared Error: 0.4102343447579613**
+- **R-squared: 0.0011947928498579063**
 
 
 **Model Quality**
@@ -357,12 +356,14 @@ The best hyperparameters were:
 
 **Model Evaluation:**  
 The final model's performance on the test set:  
-**Mean Squared Error: 0.40994590758244304**
-**R-squared: 0.0018970562184047468**
+- **Mean Squared Error: 0.40994590758244304**
+- **R-squared: 0.0018970562184047468**
 
 **Comparison to Baseline:**  
 The baseline model had an R² of **0.0012** and an MSE of **0.41**, and the final model has a very slight improvement, with an R² of **0.0019** — suggesting that the additional features and hyperparameter tuning had minimal effect.  
+
 The small R² value indicates that the model still struggles to explain the variance in average ratings, meaning cooking time, number of steps, and number of ingredients do not strongly predict ratings.  
+
 We think that this may be because ratings may be influenced by other factors like user preferences, recipe descriptions, or presentation, not just complexity or cooking time. Another possible reason is the relationship may be nonlinear or more nuanced, requiring more sophisticated features (e.g., interaction terms, cuisine type).  
 
 
