@@ -377,11 +377,11 @@ Newer	: submitted after and on 2014
 
 We want to evaluate the model’s fairness by using R<sup>2</sup> (coefficient of determination) as the measurement. A higher R<sup>2</sup> indicates that the model is better at capturing the variability in the data, which means the model's performance has improved. A lower  R<sup>2</sup> suggests poorer performance, as the model explains less of the variance.
 
-Test Statistic			: Difference in $R^2$ between the two groups.
-Null Hypothesis		: Our model is fair. Its precision for old and new recipes are roughly the same, and any differences are due to random chance.
+Test Statistic			   : Difference in R<sup>2</sup> between the two groups.
+Null Hypothesis		   : Our model is fair. Its precision for old and new recipes are roughly the same, and any differences are due to random chance.
 Alternative Hypothesis	: Our model is unfair. Its precision for older recipes is lower than its precision for newer recipes.
 
-The significance level is set at $\alpha = 0.05$. 
+Significance Level    = 0.05. 
 
 <iframe
   src="assets/fairness_graph.html"
