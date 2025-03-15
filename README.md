@@ -375,8 +375,7 @@ First, we found that the median of the year from the `submitted` column is 2013.
 Older	: submitted prior to and on 2013
 Newer	: submitted after and on 2014
 
-We want to evaluate the model’s fairness by using $R^2$ (coefficient of determination) as the measurement. A higher $R^2$ indicates that the model is better at capturing the variability in the data, which means the model's performance has improved. A lower $R^2$ suggests poorer performance, as the model explains less of the variance.
-
+We want to evaluate the model’s fairness by using R<sup>2</sup> (coefficient of determination) as the measurement. A higher R<sup>2</sup> indicates that the model is better at capturing the variability in the data, which means the model's performance has improved. A lower  R<sup>2</sup> suggests poorer performance, as the model explains less of the variance.
 
 Test Statistic			: Difference in $R^2$ between the two groups.
 Null Hypothesis		: Our model is fair. Its precision for old and new recipes are roughly the same, and any differences are due to random chance.
