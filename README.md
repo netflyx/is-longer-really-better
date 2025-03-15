@@ -38,7 +38,7 @@ The `interactions` dataset, taken from `interactions.csv`, contains 83782 rows, 
 | `rating`    | Rating given        |
 | `review`    | Review text         |
 
-**The columns that we are mainly focused on are ‘id’ and ‘minutes’ from `recipes` and ‘recipe_id’ and ‘rating’ from `interactions`.**
+**The columns that we are mainly focused on are ``id`` and ``minutes`` from `recipes` and ``recipe_id`` and ``rating`` from `interactions`.**
 
 ## <code style=" color : lightskyblue"> Data Cleaning and Exploratory Data Analysis </code>
 
@@ -47,7 +47,7 @@ To make our dataset more convenient for our analysis, we did the following steps
 1. Cleaning up the interactions dataset:
    - Filled in missing reviews with empty strings.
    - Convert the date to a datetime format in case we need to take data overtime.
-   - Changed the values in the ‘rating’ column. The ratings are generally 1 (lowest) to 5 (highest). In order to avoid outliers, we changed all zeroes to np.nan. We also ensured that there were no ratings higher than 5.
+   - Changed the values in the ``rating`` column. The ratings are generally 1 (lowest) to 5 (highest). In order to avoid outliers, we changed all zeroes to np.nan. We also ensured that there were no ratings higher than 5.
    - This is what `interactions_df` looks like after cleanup:
    - | Column    | Data Type      |
 |:----------|:---------------|
@@ -62,7 +62,7 @@ To make our dataset more convenient for our analysis, we did the following steps
 
 2. Cleaning up the recipes dataset:
    - Filled in missing columns, such as name and description, with empty strings.
-   - Convert the ‘submitted’ column values to a datetime format
+   - Convert the ``submitted`` column values to a datetime format
    - Dropped rows that minutes less than / equal to zero. Generally, we expect cooking time to be at least one minute, so we removed zero minute values from our analysis.
    - Values that appear as lists in the dataset are actually strings. We created a function to convert it into a list object.
    - This is what `recipes_df` looked like after cleanup:
@@ -98,10 +98,10 @@ To make our dataset more convenient for our analysis, we did the following steps
 
 
 3. Merging the datasets:
-   - Our first merge was recipes (on ‘id’) and interactions (on ‘recipe_id’). We merged left, which means we kept the values on recipes. The resulting dataframe is named `merged_df`
+   - Our first merge was `recipes` (on ``id``) and `interactions` (on ``recipe_id``). We merged left, which means we kept the values on recipes. The resulting dataframe is named `merged_df`
 
 4. Adding a column for average ratings:
-   - Created a copy of the merged dataframe using groupby and added a new column, ‘avg_rating’, which shows the average rating of each recipe (grouped by ‘id’). We named this dataframe `average_ratings`.
+   - Created a copy of the merged dataframe using groupby and added a new column, ``avg_rating``, which shows the average rating of each recipe (grouped by ``id``). We named this dataframe `average_ratings`.
    - This is what `average_ratings` looks like:
    - | Column             | Data type   |
 | :----------------- | :---------- |
@@ -110,8 +110,8 @@ To make our dataset more convenient for our analysis, we did the following steps
 
 
 5. Merging the datasets (again):
-   - We want to create a dataframe that only has one rating for each duplicate recipe, which means we need to drop the duplicate ‘id’ values on merged_df before merging it with average_raitngs.
-   - Merged `average_ratings` and  `deduplicated_df` on their shared column ‘id’ and kept left. The resulting dataframe is `merged_avg_df`.
+   - We want to create a dataframe that only has one rating for each duplicate recipe, which means we need to drop the duplicate ``id`` values on merged_df before merging it with average_raitngs.
+   - Merged `average_ratings` and  `deduplicated_df` on their shared column ``id`` and kept left. The resulting dataframe is `merged_avg_df`.
 
 6. Filtering outliers:
    - In order to take care of outliers, we cap the minutes at the 99th percentile.
@@ -178,7 +178,7 @@ Because we've capped the minutes at the 99th percentile, the x-axis is no longer
 
 ### Bivariate Analysis
 
-To explore the relationship between cooking time and average rating, we created a scatter plot and a box plot. We added the `cooking_time_bins` column to `filtered_df`. 
+To explore the relationship between cooking time and average rating, we created a scatter plot and a box plot. We added the ``cooking_time_bins`` column to `filtered_df`. 
 
 <iframe
   src="assets/fig_bivariate_scatter.html"
@@ -201,7 +201,7 @@ By binning cooking times, we can clearly compare how different time ranges affec
 
 ### Interesting Aggregates
 
-In our `filtered_df`, a few columns would be good to group and pivot. We added the `cooking_time_bins` column and we’ve already categorized cooking times, so grouping by these bins can reveal trends like average ratings for each time category. We can also group by the ratings to show how cooking time affects the user ratings.
+In our `filtered_df`, a few columns would be good to group and pivot. We added the ``cooking_time_bins`` column and we’ve already categorized cooking times, so grouping by these bins can reveal trends like average ratings for each time category. We can also group by the ratings to show how cooking time affects the user ratings.
 
 | cooking_time_bins       | avg_rating (mean) | count |
 |-------------------------|-------------------|-------|
@@ -221,19 +221,19 @@ In our data, there are three columns that have a significant amount of missing v
 
 ### NMAR Analysis
 
-I think that the missing values for review are not missing at random. This is due to the fact that many people might not care to leave a review unless they either loved or hated it (1 or a 5) but if they were more neutral on it, they might not have left a review.
+I think that the missing values for review are not missing at random. This is due to the fact that many people might not care to leave a review unless they either loved or hated it (1 or a 5) but if they were more neutral on it, they might not have left a review as there is less motivation to spend all the time doing it.
 
 ### Missingness Dependency
 
 To check the missingness of `avg_rating`, we tested to see if there are any columns that it depends on. So for this one, we tested if `avg_rating` was dependent on `minutes`. A hypothesis test was set up with the following hypotheses:
 
-**Null hypothesis**: The missingness of `avg_ratings` **does not** depend on the minutes column
+**Null hypothesis**: The missingness of `avg_ratings` **does not** depend on the ``minutes`` column
 
-**Alternative hypothesis**: The missingness of `avg_ratings` **does** depend on the minutes column
+**Alternative hypothesis**: The missingness of `avg_ratings` **does** depend on the ``minutes`` column
 
 **Test Statistic**: Absolute difference of means (average amount of minutes with rating missing - average amount of minutes with rating not missing)
 
-**Significance level**: 0.01
+**Significance level**: 0.05
 
 <iframe
   src="assets/fig_marMinutes.html"
@@ -242,16 +242,16 @@ To check the missingness of `avg_rating`, we tested to see if there are any colu
   frameborder="0"
 ></iframe>
 
-Interpretation: We ran the test by shuffling missingness 1000 times and we got a 130.29 observed difference which is shown on the graph. Since the p-value we got was (0) is less than our significance level (0.01), we **reject the null hypothesis** thus the missingness of `avg_ratings` is not dependent on the `minutes` it takes to complete the recipe
+Interpretation: We ran the test by shuffling missingness 1000 times and we got a 12.73 observed difference which is shown on the graph. Since the p-value we got was 0 which is less than our significance level (0.05), we **reject the null hypothesis** thus the missingness of `avg_ratings` is not dependent on the `minutes` it takes to complete the recipe
 
-We did another test on missingness to check if `avg_ratings` was dependent on `protein` which involves the same steps but with the following hypotheses instead:
-**Null hypothesis**: The missingness of average ratings does not depend on the protein column
+We did another test on missingness to check if ``avg_ratings`` was dependent on ``protein`` which involves the same steps but with the following hypotheses instead:
+**Null hypothesis**: The missingness of average ratings does not depend on the ``protein`` column
 
-**Alternative hypothesis**: Null hypothesis: The missingness of average ratings does depend on the protein column
+**Alternative hypothesis**: Null hypothesis: The missingness of average ratings does depend on the ``protein`` column
 
 **Test Statistic**: Absolute difference of means (average amount of protein with rating missing - average amount of minutes with protein not missing)
 
-**Significance level**: 0.01
+**Significance level**: 0.05
 
 <iframe
   src="assets/fig_marSteps.html"
@@ -261,7 +261,7 @@ We did another test on missingness to check if `avg_ratings` was dependent on `p
 ></iframe>
 
 
-Interpretation: We ran the test by shuffling missingness 1000 times and we got a 130.29 observed difference which is shown on the graph. Since the p-value we got was (0.14) is greater than our significance level (0.01), we **fail to reject the null hypothesis** thus the missingness of `avg_ratings` might be dependent on the `protein` in the recipe.
+Interpretation: We ran the test by shuffling missingness 1000 times and we got a 1.13 observed difference which is shown on the graph. Since the p-value we got was (0.14) is greater than our significance level (0.05), we **fail to reject the null hypothesis** thus the missingness of `avg_ratings` might be dependent on the `protein` in the recipe.
 
 
 ## <code style=" color : lightskyblue"> Hypothesis Testing </code>
@@ -283,7 +283,7 @@ Significance Level: 0.05
 ></iframe>
 
 Conclusion
-Since the p-value is below 0.05, we **reject the null hypothesis**. This indicates that cooking time does not have a statistically significant effect on the average rating of recipes. 
+Since the p-value which is approximately 0 is below 0.05, we **reject the null hypothesis**. This indicates that cooking time does not have a statistically significant effect on the average rating of recipes. 
 
 
 ## <code style=" color : lightskyblue"> Framing a Prediction Problem </code>
@@ -292,14 +292,14 @@ For our prediction problem, we plan on predicting the **average rating** of a re
 
 The response variable is **the average rating of the recipe** and we chose this as we believe it best encapsulates overall feeling towards a recipe from the audience which is useful for not only other users, but also recipe creators.  	
 
-To evaluate our model, we decided to use Mean Square Error (MSE) and R2 as it can help us review how accurate our predictions are compared to the observations. The R-squared will also show how well our regression model fits the data on a range of 0-1, with 0 being the model not showing the vibration in the target very accurately, while a 1 is more accurate and reliable. 
+To evaluate our model, we decided to use **Mean Square Error (MSE)** and **R²** as it can help us review how accurate our predictions are compared to the observations. The R-squared will also show how well our regression model fits the data on a range of 0-1, with 0 being the model not showing the vibration in the target very accurately, while a 1 is more accurate and reliable. 
 
-When regarding features, almost all of the columns would be available for use while predicting the average rating during the “time of prediction”, except for ratings and reviews as we would ideally predict before users leave reviews. 
+When regarding features, almost all of the columns would be available for use while predicting the average rating during the “time of prediction”, except for ''ratings'' and ''reviews'' as we would ideally predict before users leave reviews. 
 
 
 ## <code style=" color : lightskyblue"> Baseline Model </code>
 
-The baseline model for this project is a linear regression model aimed at predicting the average rating (`avg_rating`) of recipes based on two features:  
+The baseline model for this project is a linear regression model aimed at predicting the average rating (``avg_rating``) of recipes based on two features:  
 
 1. Cooking time bins (`cooking_time_bins`)
 A categorical (nominal) feature that classifies recipes into four categories:
@@ -307,9 +307,9 @@ Short (<20 min)
 Medium (20-60 min)
 Long (60-120 min)
 Extra Long (>120 min)
-This feature was created by binning the `minutes` column using `pd.cut()`. One-hot encoding was applied to convert these categories into a format suitable for the regression model.  
+This feature was created by binning the ``minutes`` column using `pd.cut()`. One-hot encoding was applied to convert these categories into a format suitable for the regression model.  
 
-2. Number of ingredients (`n_ingredients`)
+2. Number of ingredients (``n_ingredients``)
 A quantitative (continuous) feature representing the number of ingredients used in each recipe. This feature was standardized using `StandardScaler()` to ensure it had a mean of 0 and a standard deviation of 1.  
 
 **Encoding and Transformations:**  
