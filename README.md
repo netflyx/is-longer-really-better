@@ -218,18 +218,20 @@ In this pivot table:
 ## <code style=" color : lightskyblue"> Assessment of Missingness </code>
 
 In our data, there are three columns that have a significant amount of missing values `review`, `rating`, and `avg_rating` 
+
 ### NMAR Analysis
+
 I think that the missing values for review are not missing at random. This is due to the fact that many people might not care to leave a review unless they either loved or hated it (1 or a 5) but if they were more neutral on it, they might not have left a review.
 
 ### Missingness Dependency
 
 To check the missingness of `avg_rating`, we tested to see if there are any columns that it depends on. So for this one, we tested if `avg_rating` was dependent on `minutes`. A hypothesis test was set up with the following hypotheses:
 
-**Null hypothesis**: The missingness of avg ratings does not depend on the minutes column
+**Null hypothesis**: The missingness of `avg_ratings` **does not** depend on the minutes column
 
-**Alternative hypothesis**: Null hypothesis: The missingness of avg ratings does depend on the minutes column
+**Alternative hypothesis**: The missingness of `avg_ratings` **does** depend on the minutes column
 
-**Test Statistic**: Absolute difference of means (avg amount of minutes with rating missing - avg amount of minutes with rating not missing)
+**Test Statistic**: Absolute difference of means (average amount of minutes with rating missing - average amount of minutes with rating not missing)
 
 **Significance level**: 0.01
 
@@ -243,11 +245,11 @@ To check the missingness of `avg_rating`, we tested to see if there are any colu
 Interpretation: We ran the test by shuffling missingness 1000 times and we got a 130.29 observed difference which is shown on the graph. Since the p-value we got was (0) is less than our significance level (0.01), we **reject the null hypothesis** thus the missingness of `avg_ratings` is not dependent on the `minutes` it takes to complete the recipe
 
 We did another test on missingness to check if `avg_ratings` was dependent on `protein` which involves the same steps but with the following hypotheses instead:
-**Null hypothesis**: The missingness of avg ratings does not depend on the protein column
+**Null hypothesis**: The missingness of average ratings does not depend on the protein column
 
-**Alternative hypothesis**: Null hypothesis: The missingness of avg ratings does depend on the protein column
+**Alternative hypothesis**: Null hypothesis: The missingness of average ratings does depend on the protein column
 
-**Test Statistic**: Absolute difference of means (avg amount of protein with rating missing - avg amount of minutes with protein not missing)
+**Test Statistic**: Absolute difference of means (average amount of protein with rating missing - average amount of minutes with protein not missing)
 
 **Significance level**: 0.01
 
@@ -286,7 +288,7 @@ Since the p-value is below 0.05, we **reject the null hypothesis**. This indicat
 
 ## <code style=" color : lightskyblue"> Framing a Prediction Problem </code>
 
-For our prediction problem, we are planning on predicting the **average rating** of a recipe. This is a **regression** problem since the response variable, average rating, is continuous between 1 and 5, not categorical as it contains decimal values.
+For our prediction problem, we plan on predicting the **average rating** of a recipe. This is a **regression** problem since the response variable, average rating, is continuous between 1 and 5, not categorical as it contains decimal values.
 
 The response variable is **the average rating of the recipe** and we chose this as we believe it best encapsulates overall feeling towards a recipe from the audience which is useful for not only other users, but also recipe creators.  	
 
@@ -310,18 +312,18 @@ This feature was created by binning the `minutes` column using `pd.cut()`. One-h
 2. Number of ingredients (`n_ingredients`)
 A quantitative (continuous) feature representing the number of ingredients used in each recipe. This feature was standardized using `StandardScaler()` to ensure it had a mean of 0 and a standard deviation of 1.  
 
-**Encoding and Transformations**  
+**Encoding and Transformations:**  
 - The nominal feature (`cooking_time_bins`) was transformed using **one-hot encoding** to create binary columns for each category.  
 - The quantitative feature (`n_ingredients`) was standardized to account for different scales and improve model performance.  
 - Any rows with missing target values (`avg_rating`) were removed to prevent errors during training.  
 
-**Model Evaluation**  
+**Model Evaluation:**  
 After splitting the data into training (70%) and test (30%) sets, the pipeline was trained and evaluated. The baseline model achieved:  
 - **Mean Squared Error: 0.4102343447579613**
 - **R-squared: 0.0011947928498579063**
 
 
-**Model Quality**
+**Model Quality:**
 While the MSE and R² provide a starting point, this baseline model is relatively simple and likely underfits the data. It does not capture complex relationships between features or interactions between cooking time, ingredient count, and other factors that might influence a recipe's rating. The next steps will involve exploring additional features, testing more complex models, and fine-tuning hyperparameters to improve predictive performance.  
 
 
@@ -372,16 +374,16 @@ We think that this may be because ratings may be influenced by other factors lik
 To assess our model’s fairness, we decided to look into possible biases in predictions that relate to the date the recipes were submitted. 
 
 First, we found that the median of the year from the `submitted` column is 2013. Therefore, we categorized the recipes into two groups:
-Older	: submitted prior to and on 2013
-Newer	: submitted after and on 2014
+- Older	: submitted prior to and on 2013
+- Newer	: submitted after and on 2014
 
 We want to evaluate the model’s fairness by using R<sup>2</sup> (coefficient of determination) as the measurement. A higher R<sup>2</sup> indicates that the model is better at capturing the variability in the data, which means the model's performance has improved. A lower  R<sup>2</sup> suggests poorer performance, as the model explains less of the variance.
 
-Test Statistic			   : Difference in R<sup>2</sup> between the two groups.
-Null Hypothesis		   : Our model is fair. Its precision for old and new recipes are roughly the same, and any differences are due to random chance.
-Alternative Hypothesis	: Our model is unfair. Its precision for older recipes is lower than its precision for newer recipes.
+- Test Statistic        : Difference in R<sup>2</sup> between the two groups.
+- Null Hypothesis		   : Our model is fair. Its precision for old and new recipes are roughly the same, and any differences are due to random chance.
+- Alternative Hypothesis: Our model is unfair. Its precision for older recipes is lower than its precision for newer recipes.
 
-Significance Level    = 0.05. 
+Significance Level   = 0.05. 
 
 <iframe
   src="assets/fairness_graph.html"
@@ -390,7 +392,7 @@ Significance Level    = 0.05.
   frameborder="0"
 ></iframe>
 
-**Conclusion** 
+**Conclusion:**
 After running our permutation test, we get a p-value of 0.1902  which is greater than our significance level of 0.05 meaning that **we fail to reject the null hypothesis** which means our model for the newer and older recipes should be fair and any differences are due to random chance. 
 
 
