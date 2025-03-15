@@ -115,7 +115,7 @@ This is what `average_ratings` looks like:
 Merged `average_ratings` and  `deduplicated_df` on their shared column ‘id’ and kept left. The resulting dataframe is `merged_avg_df`.
 
 6. Filtering outliers:
-   - In order to take care of outliers, we cap the minutes at the 99th percentile. **HELP: give reason why pls**
+   - In order to take care of outliers, we cap the minutes at the 99th percentile.
    - The resulting dataframe is named `filtered_df`, and this is the dataframe we will be working with for the rest of the project
 
 
@@ -137,13 +137,13 @@ Here are all the columns in `filtered_df`:
 | `description`   | object         |
 | `ingredients`   | object         |
 | `n_ingredients` | int64          |
-| `calories`      | object         |
-| `total_fat`     | object         |
-| `sugar`         | object         |
-| `sodium`        | object         |
-| `protein`       | object         |
-| `saturated_fat` | object         |
-| `carbohydrates` | object         |
+| `calories`      | float64        |
+| `total_fat`     | float64        |
+| `sugar`         | float64        |
+| `sodium`        | float64        |
+| `protein`       | float64        |
+| `saturated_fat` | float64        |
+| `carbohydrates` | float64        |
 | `user_id`       | float64        |
 | `recipe_id`     | float64        |
 | `date`          | datetime64[ns] |
