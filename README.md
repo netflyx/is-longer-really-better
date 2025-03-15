@@ -369,5 +369,31 @@ We think that this may be because ratings may be influenced by other factors lik
 
 ## <code style=" color : lightskyblue"> Fairness Analysis </code>
 
+To assess our model’s fairness, we decided to look into possible biases in predictions that relate to the date the recipes were submitted. 
+
+First, we found that the median of the year from the `submitted` column is 2013. Therefore, we categorized the recipes into two groups:
+Older	: submitted prior to and on 2013
+Newer	: submitted after and on 2014
+
+We want to evaluate the model’s fairness by using $R^2$ (coefficient of determination) as the measurement. A higher $R^2$ indicates that the model is better at capturing the variability in the data, which means the model's performance has improved. A lower $R^2$ suggests poorer performance, as the model explains less of the variance.
+
+
+Test Statistic			: Difference in $R^2$ between the two groups.
+Null Hypothesis		: Our model is fair. Its precision for old and new recipes are roughly the same, and any differences are due to random chance.
+Alternative Hypothesis	: Our model is unfair. Its precision for older recipes is lower than its precision for newer recipes.
+
+The significance level is set at $\alpha = 0.05$. 
+
+<iframe
+  src="assets/fairness_graph.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+**Conclusion** 
+After running our permutation test, we get a p-value of 0.1902  which is greater than our significance level of 0.05 meaning that **we fail to reject the null hypothesis** which means our model for the newer and older recipes should be fair and any differences are due to random chance. 
+
+
 
 
