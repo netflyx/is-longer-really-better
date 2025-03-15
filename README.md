@@ -317,7 +317,9 @@ A quantitative (continuous) feature representing the number of ingredients used 
 
 **Model Evaluation**  
 After splitting the data into training (70%) and test (30%) sets, the pipeline was trained and evaluated. The baseline model achieved:  
+
 **Mean Squared Error: 0.4102343447579613**
+
 **R-squared: 0.0011947928498579063**
 
 
@@ -355,13 +357,18 @@ The best hyperparameters were:
 - n_estimators 	   : 300  
 
 **Model Evaluation:**  
+
 The final model's performance on the test set:  
+
 **Mean Squared Error: 0.40994590758244304**
+
 **R-squared: 0.0018970562184047468**
 
 **Comparison to Baseline:**  
 The baseline model had an R² of **0.0012** and an MSE of **0.41**, and the final model has a very slight improvement, with an R² of **0.0019** — suggesting that the additional features and hyperparameter tuning had minimal effect.  
+
 The small R² value indicates that the model still struggles to explain the variance in average ratings, meaning cooking time, number of steps, and number of ingredients do not strongly predict ratings.  
+
 We think that this may be because ratings may be influenced by other factors like user preferences, recipe descriptions, or presentation, not just complexity or cooking time. Another possible reason is the relationship may be nonlinear or more nuanced, requiring more sophisticated features (e.g., interaction terms, cuisine type).  
 
 
